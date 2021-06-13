@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float checkRadius;
     [SerializeField] int extraJumpsValue;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip jumpClip;
+
     // State variables
     private float _moveInput;
     private Rigidbody2D _rb;
@@ -59,10 +63,12 @@ public class PlayerMovement : MonoBehaviour
         {
             _rb.velocity = Vector2.up * jumpForce;
             _extraJumps--;
+            audioSource.PlayOneShot(jumpClip);
         }
         else if (Input.GetKeyDown(KeyCode.Space) && _extraJumps == 0 && _isGrounded == true)
         {
             _rb.velocity = Vector2.up * jumpForce;
+            audioSource.PlayOneShot(jumpClip);
         }
     }
 

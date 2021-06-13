@@ -13,6 +13,7 @@ public class SlimeSwitchController : MonoBehaviour
     {
         currentSlime = greenSlime;
         currentSlime.GetComponent<PlayerMovement>().enabled = true;
+        currentSlime.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Focused_GreenSlime") as RuntimeAnimatorController;
     }
 
     private void Update()
@@ -27,17 +28,25 @@ public class SlimeSwitchController : MonoBehaviour
     {
         currentSlime.GetComponent<PlayerMovement>().enabled = false;
         var rb = currentSlime.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector3(0f, rb.velocity.y);
-
-        Debug.Log(rb.velocity.y);
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
         if (currentSlime.CompareTag("GreenSlime"))
+        {
+            currentSlime.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/GreenSlime") as RuntimeAnimatorController;
             currentSlime = blueSlime;
+            currentSlime.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Focused_BlueSlime") as RuntimeAnimatorController;
+        }
         else if (currentSlime.CompareTag("BlueSlime"))
+        {
+            currentSlime.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/BlueSlime") as RuntimeAnimatorController;
             currentSlime = greenSlime;
-        currentSlime.GetComponent<PlayerMovement>().enabled = true;
+            currentSlime.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Focused_GreenSlime") as RuntimeAnimatorController;
+        }
 
-        if (rb.velocity.y == 0)
-            rb.isKinematic = true;
+        rb = currentSlime.GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        currentSlime.GetComponent<PlayerMovement>().enabled = true;
     }
 }

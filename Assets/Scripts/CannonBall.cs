@@ -7,16 +7,26 @@ public class CannonBall : MonoBehaviour
     [SerializeField] float speed = 20f;
     [SerializeField] Rigidbody2D rb;
 
+    [Header("Shoot Direction")]
     [SerializeField] bool shootsRight;
     [SerializeField] bool shootsLeft;
     [SerializeField] bool shootsUp;
     [SerializeField] bool shootsDown;
+
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip explosion;
 
     private float _timer = 0;
     private BoxCollider2D boxCollider;
 
     private Health _health;
     private ScreenShakeController _shakeController;
+
+    private void Awake()
+    {
+        audioSource = FindObjectOfType<AudioSource>();
+    }
 
     private void Start()
     {
@@ -41,6 +51,8 @@ public class CannonBall : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer > 0.05)
             boxCollider.enabled = true;
+        if (_timer > 3)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,11 +61,15 @@ public class CannonBall : MonoBehaviour
 
         if (collision.gameObject.layer == 3) // If collision object's layer is "Player"
         {
+            audioSource.PlayOneShot(explosion);
             _health.TakeDamage(1);
             Destroy(gameObject);
         }
 
         if (_timer > .06)
+        {
+            audioSource.PlayOneShot(explosion);
             Destroy(gameObject); // Destroy the ball if it hits something
+        }
     }
 }

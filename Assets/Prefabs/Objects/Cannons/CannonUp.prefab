@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2162436463076452212}
   - component: {fileID: 2162436463076452214}
   - component: {fileID: 2162436463076452215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CannonUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 7833677764695559095, guid: f462ab0da22c3334ba3ac7710333ccd8, type: 3}
+  audioSource: {fileID: 0}
+  cannonShot: {fileID: 0}
   timer: 0
   cooldown: 3
 --- !u!61 &2162436463076452215

@@ -7,8 +7,11 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int maxHealth;
     [SerializeField] int health;
-
     [SerializeField] TextMeshProUGUI healthDisplay;
+
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip hitClip;
 
     SceneLoader sceneLoader;
     Invincibility invincibility;
@@ -31,6 +34,8 @@ public class Health : MonoBehaviour
         if (invincibility.isInvincible)
             return;
 
+        audioSource.PlayOneShot(hitClip);
+        
         invincibility.BecomeInvincible();
         health -= dmg;
         healthDisplay.text = health.ToString();

@@ -150,3 +150,5 @@ MonoBehaviour:
   shootsLeft: 1
   shootsUp: 0
   shootsDown: 0
+  audioSource: {fileID: 0}
+  explosion: {fileID: 8300000, guid: 47a6d32acdda16347882493ab11abe0c, type: 3}
