@@ -13,6 +13,7 @@ public class CannonBall : MonoBehaviour
     [SerializeField] bool shootsDown;
 
     private float _timer = 0;
+    private BoxCollider2D boxCollider;
 
     Health health;
     ScreenShakeController shakeController;
@@ -21,6 +22,8 @@ public class CannonBall : MonoBehaviour
     {
         health = FindObjectOfType<Health>();
         shakeController = FindObjectOfType<ScreenShakeController>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.enabled = false;
 
         if (shootsRight)
             rb.velocity = transform.right * speed;
@@ -34,7 +37,10 @@ public class CannonBall : MonoBehaviour
 
     private void Update()
     {
-        _timer += Time.deltaTime;   
+        // A timer is used to give the ball enough time to get out of the cannon's collider
+        _timer += Time.deltaTime;
+        if (_timer > 0.03)
+            boxCollider.enabled = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,8 +52,8 @@ public class CannonBall : MonoBehaviour
             health.TakeDamage(1);
             Destroy(gameObject);
         }
-        // A timer is used to give the ball enough time to get out of the cannon's collider
-        else if (_timer > 0.5)
+
+        if (_timer > .04)
             Destroy(gameObject); // Destroy the ball if it hits something
     }
 }
