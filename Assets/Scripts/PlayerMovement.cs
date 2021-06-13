@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float _moveInput;
     private Rigidbody2D _rb;
     [SerializeField] private bool _isGrounded;
-    private bool _facingRight = true;
+    public bool facingRight = true;
     [SerializeField] private int _extraJumps;
 
     // Cached references
@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
         _moveInput = Input.GetAxis("Horizontal");
         _rb.velocity = new Vector2(_moveInput * speed, _rb.velocity.y);
 
-        if (_facingRight == false && _moveInput > 0)
+        if (facingRight == false && _moveInput > 0)
             Flip();
-        else if (_facingRight == true && _moveInput < 0)
+        else if (facingRight == true && _moveInput < 0)
             Flip();
 
         if (_rb.velocity.x != 0)
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        _facingRight = !_facingRight;
+        facingRight = !facingRight;
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;

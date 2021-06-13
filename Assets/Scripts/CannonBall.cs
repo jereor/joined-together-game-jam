@@ -15,13 +15,13 @@ public class CannonBall : MonoBehaviour
     private float _timer = 0;
     private BoxCollider2D boxCollider;
 
-    Health health;
-    ScreenShakeController shakeController;
+    private Health _health;
+    private ScreenShakeController _shakeController;
 
     private void Start()
     {
-        health = FindObjectOfType<Health>();
-        shakeController = FindObjectOfType<ScreenShakeController>();
+        _health = FindObjectOfType<Health>();
+        _shakeController = FindObjectOfType<ScreenShakeController>();
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
 
@@ -45,11 +45,11 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        shakeController.StartShake(.1f, .1f);
+        _shakeController.StartShake(.1f, .1f);
 
         if (collision.gameObject.layer == 3) // If collision object's layer is "Player"
         {
-            health.TakeDamage(1);
+            _health.TakeDamage(1);
             Destroy(gameObject);
         }
 

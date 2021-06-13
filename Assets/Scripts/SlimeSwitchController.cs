@@ -28,7 +28,6 @@ public class SlimeSwitchController : MonoBehaviour
         currentSlime.GetComponent<PlayerMovement>().enabled = false;
         var rb = currentSlime.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector3(0f, rb.velocity.y);
-        var oldSlime = currentSlime;
 
         Debug.Log(rb.velocity.y);
 

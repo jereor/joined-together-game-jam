@@ -11,11 +11,13 @@ public class Health : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthDisplay;
 
     SceneLoader sceneLoader;
+    Invincibility invincibility;
 
     private void Start()
     {
         health = maxHealth;
         sceneLoader = FindObjectOfType<SceneLoader>();
+        invincibility = FindObjectOfType<Invincibility>();
         healthDisplay.text = health.ToString();
     }
 
@@ -26,6 +28,10 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if (invincibility.isInvincible)
+            return;
+
+        invincibility.BecomeInvincible();
         health -= dmg;
         healthDisplay.text = health.ToString();
 
