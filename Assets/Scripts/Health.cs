@@ -19,6 +19,11 @@ public class Health : MonoBehaviour
         healthDisplay.text = health.ToString();
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     public void TakeDamage(int dmg)
     {
         health -= dmg;

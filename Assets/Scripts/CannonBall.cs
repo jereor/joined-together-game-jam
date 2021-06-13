@@ -15,10 +15,12 @@ public class CannonBall : MonoBehaviour
     private float _timer = 0;
 
     Health health;
+    ScreenShakeController shakeController;
 
     private void Start()
     {
         health = FindObjectOfType<Health>();
+        shakeController = FindObjectOfType<ScreenShakeController>();
 
         if (shootsRight)
             rb.velocity = transform.right * speed;
@@ -37,6 +39,8 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        shakeController.StartShake(.1f, .1f);
+
         if (collision.gameObject.layer == 3) // If collision object's layer is "Player"
         {
             health.TakeDamage(1);
