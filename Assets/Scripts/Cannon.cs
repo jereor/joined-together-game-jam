@@ -20,6 +20,6 @@ public class Cannon : MonoBehaviour
     private void ShootBall()
     {
         timer = 0;
-        Instantiate(cannonBall);
+        Instantiate(cannonBall, transform);
     }
 }
