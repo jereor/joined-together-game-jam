@@ -39,7 +39,7 @@ public class CannonBall : MonoBehaviour
     {
         // A timer is used to give the ball enough time to get out of the cannon's collider
         _timer += Time.deltaTime;
-        if (_timer > 0.03)
+        if (_timer > 0.05)
             boxCollider.enabled = true;
     }
 
@@ -53,7 +53,7 @@ public class CannonBall : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (_timer > .04)
+        if (_timer > .06)
             Destroy(gameObject); // Destroy the ball if it hits something
     }
 }

@@ -9,43 +9,40 @@ public class SlimeLink : MonoBehaviour
     [SerializeField] GameObject blueSlime;
 
     [Header("Line Renderer")]
-    [SerializeField] Shader linkShader;
+    [SerializeField] Material linkMaterial;
     [SerializeField] Color[] colors;
 
     private GameObject _line;
-    private LineRenderer _lineRenderer;
-    private int _colorCount;
-    private Color _color = new Color(0, 1, 0, 0.5f);
 
-    private Health _health;
+    Health health;
 
     private void Start()
     {
         // Setup Link line and line renderer
         _line = new GameObject();
         _line.AddComponent<LineRenderer>();
-        _lineRenderer = _line.GetComponent<LineRenderer>();
-        _lineRenderer.startWidth = 0.1f;
-        _lineRenderer.endWidth = 0.1f;
-        _lineRenderer.material = new Material(linkShader);
+        _line.GetComponent<LineRenderer>().startWidth = 0.1f;
+        _line.GetComponent<LineRenderer>().endWidth = 0.1f;
+        _line.GetComponent<LineRenderer>().material = new Material(linkMaterial);
 
-        // Color and health variables
-        _colorCount = colors.Length;
-        _health = FindObjectOfType<Health>();
+        // Health script reference
+        health = FindObjectOfType<Health>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        DrawLine(greenSlime.transform.position, blueSlime.transform.position, _color);
+        if (health.GetHealth() - 1 >= 0 && health.GetHealth() -1 < colors.Length)
+            DrawLine(greenSlime.transform.position, blueSlime.transform.position, colors[health.GetHealth() - 1]);
     }
 
     public void DrawLine(Vector3 start, Vector3 end, Color color)
     {
         _line.transform.position = start;
-        _lineRenderer.startColor = color;
-        _lineRenderer.endColor = color;
-        _lineRenderer.SetPosition(0, start);
-        _lineRenderer.SetPosition(1, end);
+        _line.GetComponent<LineRenderer>().startColor = color;
+        _line.GetComponent<LineRenderer>().endColor = color;
+        _line.GetComponent<LineRenderer>().SetPosition(0, start);
+        _line.GetComponent<LineRenderer>().SetPosition(1, end);
+        _line.GetComponent<LineRenderer>().sortingOrder = 1;
     }
 }
