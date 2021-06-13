@@ -96,7 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4871539ab093c224f9ff7549d8d61c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBall: {fileID: 7833677764695559095, guid: 20d77f43a80eabf48931b902ef942f28, type: 3}
+  cannonBall: {fileID: 7833677764695559095, guid: c534c4d42f5e35b40a0a5cea1be285da, type: 3}
+  audioSource: {fileID: 0}
+  cannonShot: {fileID: 0}
   timer: 0
   cooldown: 3
 --- !u!61 &100883080230006908
