@@ -20,8 +20,8 @@ public class CannonBall : MonoBehaviour
     private float _timer = 0;
     private BoxCollider2D boxCollider;
 
-    private Health _health;
-    private ScreenShakeController _shakeController;
+    Health health;
+    ScreenShakeController shakeController;
 
     private void Awake()
     {
@@ -30,8 +30,8 @@ public class CannonBall : MonoBehaviour
 
     private void Start()
     {
-        _health = FindObjectOfType<Health>();
-        _shakeController = FindObjectOfType<ScreenShakeController>();
+        health = FindObjectOfType<Health>();
+        shakeController = FindObjectOfType<ScreenShakeController>();
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
 
@@ -57,12 +57,12 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _shakeController.StartShake(.1f, .1f);
+        shakeController.StartShake(.1f, .1f);
 
         if (collision.gameObject.layer == 3) // If collision object's layer is "Player"
         {
             audioSource.PlayOneShot(explosion);
-            _health.TakeDamage(1);
+            health.TakeDamage(1);
             Destroy(gameObject);
         }
 

@@ -14,6 +14,11 @@ public class Cannon : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float cooldown;
 
+    private void Awake()
+    {
+        audioSource = FindObjectOfType<AudioSource>();
+    }
+
     private void Update()
     {
         timer += Time.deltaTime;
