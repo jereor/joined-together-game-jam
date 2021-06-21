@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7844859946563857144}
   - component: {fileID: 7844859946563857147}
   - component: {fileID: 7844859946563857146}
-  - component: {fileID: 4680971682661950768}
+  - component: {fileID: 1644624711586559988}
   - component: {fileID: 7844859946563857148}
   - component: {fileID: 7844859946563857145}
   m_Layer: 3
@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -108,8 +108,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4680971682661950768
-CircleCollider2D:
+--- !u!61 &1644624711586559988
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,9 +121,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.029371262}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.47062874
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &7844859946563857148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +152,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 7844859947506177174}
-  checkRadius: 0.5
+  checkRadius: 0.3
   extraJumpsValue: 1
   audioSource: {fileID: 0}
   jumpClip: {fileID: 8300000, guid: 3373f374091de39418ed1bea29e20649, type: 3}
